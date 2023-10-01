@@ -25,8 +25,7 @@ export const Contact = () => {
 
   const handleForm = (data: Inputs) => {
     console.log({ data });
-    const sendGridApiKey =
-      "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";
+    const sendGridApiKey = process.env.SEND_GRID;
 
     fetch("https://api.sendgrid.com/v3/mail/send", {
       method: "POST",
