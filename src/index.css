@@ -91,12 +91,34 @@ button:focus-visible {
   align-items: center;
 }
 
-.contact_section input {
-  border: none;
+.contact_form-container .holder {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1em;
+}
+
+.contact_form-container .holder label {
+  margin-bottom: 0;
+}
+
+.contact_form-container .holder small.error {
+  color: red;
+}
+
+.contact_form-container input,
+.contact_form-container textarea {
+  background: white;
+  border: 1px solid var(--main-color);
+  border-radius: 0;
+  color: black;
+  min-height: 50px;
+  width: 100%;
+
   outline: none;
-  border-bottom: 1px solid #000;
-  width: 90%;
-  margin: 15px 0;
+}
+.contact_form-container input:focus,
+.contact_form-container textarea:focus {
+  border: 3px solid var(--main-color);
 }
 
 .contact_form-container button {
