@@ -101,7 +101,8 @@ export const Contact = () => {
                     })}
                   />
                   <small className="error">
-                    {!allVales.email && !allVales.tel
+                    {errors.email ||
+                    (errors.tel && !allVales.email && !allVales.tel)
                       ? "We need either your email or phone so we can get in touch"
                       : null}
                   </small>
@@ -116,7 +117,8 @@ export const Contact = () => {
                     })}
                   />
                   <small className="error">
-                    {!allVales.email && !allVales.tel
+                    {errors.email ||
+                    (errors.tel && !allVales.email && !allVales.tel)
                       ? "We need either your phone or email so we can get in touch"
                       : null}
                   </small>
