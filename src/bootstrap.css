@@ -4433,7 +4433,7 @@ input[type="button"].btn-block {
   justify-content: space-between;
   padding: 0.5rem 1rem;
   top: 0;
-  background: #64c6ff;
+  background: var(--main-color);
   min-height: 65px;
   font-family: "Poppins", sans-serif;
 }

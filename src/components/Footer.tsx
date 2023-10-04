@@ -23,15 +23,24 @@ export const Footer = () => (
             </p>
           </div>
           <div className="col-md-3 offset-md-1">
-            <div className="subscribe_container">
-              <h5>Newsletter</h5>
-              <div className="form_container">
-                <form action="">
-                  <input type="email" placeholder="Enter your email" />
-                  <button type="submit">Subscribe</button>
-                </form>
-              </div>
-            </div>
+            <iframe
+              width="100%"
+              height="150"
+              style={{ border: "0" }}
+              loading="lazy"
+              src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJZ2--1-WdcVMRuEfRFJT6jBM&key=AIzaSyBmh6oKwFr8hH8Nf6DZTVv3h5Gzot-pAFc"
+            ></iframe>
+            <p>
+              Visit us at{" "}
+              <a
+                className="address-link"
+                href="https://maps.app.goo.gl/AFiRDfNJ2V7RNzfHA"
+                target="_blank"
+              >
+                38 Legacy Common SE, Calgary
+              </a>
+              , in the beautiful community of Legacy!
+            </p>
           </div>
         </div>
       </div>

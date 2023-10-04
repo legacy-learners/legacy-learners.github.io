@@ -421,3 +421,8 @@ a:focus {
 .schedule_table td {
   width: fit-content;
 }
+
+.address-link {
+  color: #fefefe;
+  font-weight: 600;
+}

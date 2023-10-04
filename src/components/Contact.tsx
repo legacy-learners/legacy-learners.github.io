@@ -43,7 +43,7 @@ export const Contact = () => {
         from: { email: "contact@legacylearners.ca" },
         content: [
           {
-            type: "text/plain",
+            type: "text/html",
             value: `
             <strong>Name:<strong> ${data.name} <br />
             <strong>Email:</strong> ${data.email} <br />
