@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { createClient } from "contentful";
 import logo from "../assets/logo.svg";
-// const space = "ljrxchhp4vz2";
-// const accessToken = "CUouakjeZLk-MieMMtrUPlv-cy-t9opi9ZKjkwNWWu0";
-console.log({ test: import.meta.env });
+
 const contentfulClient = createClient({
   space: import.meta.env.VITE_CONTENTFUL_SPACE_ID ?? "",
   accessToken: import.meta.env.VITE_CONTENTFUL_DELIVERY_TOKEN ?? "",
