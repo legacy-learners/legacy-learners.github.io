@@ -1,5 +1,6 @@
 import students from "../assets/students.jpg";
 import { useForm } from "react-hook-form";
+import { Resend } from "resend";
 
 type Inputs = {
   name: string;
@@ -7,6 +8,8 @@ type Inputs = {
   tel: string;
   message: string;
 };
+
+const resend = new Resend(import.meta.env.VITE_RESEND_API_KEY);
 
 export const Contact = () => {
   const {
@@ -25,45 +28,13 @@ export const Contact = () => {
 
   const handleForm = (data: Inputs) => {
     console.log({ data });
-    const sendGridApiKey = process.env.SEND_GRID;
 
-    fetch("https://api.sendgrid.com/v3/mail/send", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${sendGridApiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        personalizations: [
-          {
-            to: [{ email: "vitorboccio@gmail.com" }],
-            subject: "Contact via LL Website",
-          },
-        ],
-        from: { email: "contact@legacylearners.ca" },
-        content: [
-          {
-            type: "text/html",
-            value: `
-            <strong>Name:<strong> ${data.name} <br />
-            <strong>Email:</strong> ${data.email} <br />
-            <strong>Phone:</strong> ${data.tel} <br />
-            <strong>Message:</strong> ${data.message} <br />
-            `,
-          },
-        ],
-      }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          console.log("Email sent successfully");
-        } else {
-          console.error("Error sending email");
-        }
-      })
-      .catch((error) => {
-        console.error("Error sending email", error);
-      });
+    resend.emails.send({
+      from: "onboarding@resend.dev",
+      to: "vitorboccio@gmail.com",
+      subject: "Hello World",
+      html: "<p>Congrats on sending your <strong>first email</strong>!</p>",
+    });
   };
 
   const allVales = getValues();
