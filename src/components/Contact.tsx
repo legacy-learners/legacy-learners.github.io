@@ -1,3 +1,4 @@
+import { useState } from "react";
 import students from "../assets/students.jpg";
 import { useForm } from "react-hook-form";
 import { Resend } from "resend";
@@ -14,6 +15,7 @@ console.log({ test: import.meta.env });
 const resend = new Resend(import.meta.env.VITE_RESEND_API_KEY);
 
 export const Contact = () => {
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -30,7 +32,13 @@ export const Contact = () => {
 
   const handleForm = async (data: Inputs) => {
     console.log({ data });
-
+    setLoading(true);
+    try {
+    } catch (error) {
+      console.log({ error });
+    } finally {
+      setLoading(false);
+    }
     await resend.emails.send({
       from: "onboarding@resend.dev",
       to: "vitorboccio@gmail.com",
@@ -115,7 +123,9 @@ export const Contact = () => {
                   </small>
                 </div>
                 <div className="mt-4">
-                  <button type="submit"> send</button>
+                  <button disabled={loading} type="submit">
+                    {loading ? "loading..." : "send"}
+                  </button>
                 </div>
               </div>
             </form>

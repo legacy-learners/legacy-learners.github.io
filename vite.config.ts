@@ -5,6 +5,6 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   define: {
-    "importa.meta.env": "process.env",
+    "process.env": {},
   },
 });
