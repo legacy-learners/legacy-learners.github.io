@@ -1,7 +1,6 @@
 import { useState } from "react";
 import students from "../assets/students.jpg";
 import { useForm } from "react-hook-form";
-// import { Resend } from "resend";
 
 type Inputs = {
   name: string;
@@ -11,8 +10,6 @@ type Inputs = {
 };
 
 console.log({ test: import.meta.env });
-
-// const resend = new Resend(import.meta.env.VITE_RESEND_API_KEY);
 
 export const Contact = () => {
   const [loading, setLoading] = useState(false);
@@ -39,17 +36,6 @@ export const Contact = () => {
     } finally {
       setLoading(false);
     }
-    // await resend.emails.send({
-    //   from: "onboarding@resend.dev",
-    //   to: "vitorboccio@gmail.com",
-    //   subject: "Hello World",
-    //   html: `
-    //     <strong>Name:<strong> ${data.name} <br />
-    //     <strong>Email:</strong> ${data.email} <br />
-    //     <strong>Phone:</strong> ${data.tel} <br />
-    //     <strong>Message:</strong> ${data.message} <br />
-    //   `,
-    // });
   };
 
   const allVales = getValues();
