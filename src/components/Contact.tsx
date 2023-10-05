@@ -9,6 +9,8 @@ type Inputs = {
   message: string;
 };
 
+console.log({ test: import.meta.env });
+
 const resend = new Resend(import.meta.env.VITE_RESEND_API_KEY);
 
 export const Contact = () => {
@@ -26,10 +28,10 @@ export const Contact = () => {
     },
   });
 
-  const handleForm = (data: Inputs) => {
+  const handleForm = async (data: Inputs) => {
     console.log({ data });
 
-    resend.emails.send({
+    await resend.emails.send({
       from: "onboarding@resend.dev",
       to: "vitorboccio@gmail.com",
       subject: "Hello World",
