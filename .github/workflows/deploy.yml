@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - master
+env:
+  VITE_CONTENTFUL_SPACE_ID: ${{ secrets.VITE_CONTENTFUL_SPACE_ID }}
+  VITE_CONTENTFUL_DELIVERY_TOKEN: ${{ secrets.VITE_CONTENTFUL_DELIVERY_TOKEN }}
+  VITE_GMAPS_API_KEY: ${{ secrets.VITE_GMAPS_API_KEY }}
+  VITE_RESEND_API_KEY: ${{ secrets.VITE_RESEND_API_KEY }}
 
 jobs:
   build:
