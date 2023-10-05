@@ -33,7 +33,12 @@ export const Contact = () => {
       from: "onboarding@resend.dev",
       to: "vitorboccio@gmail.com",
       subject: "Hello World",
-      html: "<p>Congrats on sending your <strong>first email</strong>!</p>",
+      html: `
+        <strong>Name:<strong> ${data.name} <br />
+        <strong>Email:</strong> ${data.email} <br />
+        <strong>Phone:</strong> ${data.tel} <br />
+        <strong>Message:</strong> ${data.message} <br />
+      `,
     });
   };
 
