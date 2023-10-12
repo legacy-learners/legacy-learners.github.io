@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 type Inputs = {
   name: string;
   email: string;
-  tel: string;
+  phone: string;
   message: string;
 };
 
@@ -23,7 +23,7 @@ export const Contact = () => {
     defaultValues: {
       name: "",
       email: "",
-      tel: "",
+      phone: "",
       message: "",
     },
   });
@@ -33,13 +33,12 @@ export const Contact = () => {
     setLoading(true);
     try {
       const body = {
-        name: data.name,
-        email: `email: ${data?.email ?? ""} - phone: ${data?.tel ?? ""}  `,
-        message: data.message,
-        honeypot: "",
-        replyTo: "@",
-        subject: "Legacy Learners Website Contact Form",
         accessKey: import.meta.env.VITE_STATICFORM_TOKEN,
+        subject: "Legacy Learners Website Contact Form",
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        message: data.message,
       };
       const res = await fetch("https://api.staticforms.xyz/submit", {
         method: "POST",
@@ -106,29 +105,29 @@ export const Contact = () => {
                       placeholder="Email"
                       {...register("email", {
                         required:
-                          !allVales.email && !allVales.tel ? true : false,
+                          !allVales.email && !allVales.phone ? true : false,
                       })}
                     />
                     <small className="error">
                       {errors.email ||
-                      (errors.tel && !allVales.email && !allVales.tel)
+                      (errors.phone && !allVales.email && !allVales.phone)
                         ? "We need either your email or phone so we can get in touch"
                         : null}
                     </small>
                   </div>
                   <div className="holder">
-                    <label htmlFor="tel">Phone</label>
+                    <label htmlFor="phone">Phone</label>
                     <input
-                      type="tel"
+                      type="phone"
                       placeholder="Phone Number"
-                      {...register("tel", {
+                      {...register("phone", {
                         required:
-                          !allVales.email && !allVales.tel ? true : false,
+                          !allVales.email && !allVales.phone ? true : false,
                       })}
                     />
                     <small className="error">
                       {errors.email ||
-                      (errors.tel && !allVales.email && !allVales.tel)
+                      (errors.phone && !allVales.email && !allVales.phone)
                         ? "We need either your phone or email so we can get in touch"
                         : null}
                     </small>
