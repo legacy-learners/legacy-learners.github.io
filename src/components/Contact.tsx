@@ -38,7 +38,7 @@ export const Contact = () => {
         honeypot: "",
         replyTo: "@",
         subject: "Legacy Learners Website Contact Form",
-        accessKey: import.meta.env.VITE_STATIC_FORMS_API_KEY,
+        accessKey: import.meta.env.VITE_STATICFORM_TOKEN,
       };
       const res = await fetch("https://api.staticforms.xyz/submit", {
         method: "POST",
@@ -50,6 +50,7 @@ export const Contact = () => {
       if (json.success) {
         toast("Thanks for your message👍. We will get back to you ASAP.", {
           type: "success",
+          position: "bottom-center",
         });
       }
     } catch (error) {
