@@ -34,7 +34,7 @@ export const Contact = () => {
     try {
       const body = {
         name: data.name,
-        email: `email: ${data.email} - phone: ${data.tel}  `,
+        email: `email: ${data?.email ?? ""} - phone: ${data?.tel ?? ""}  `,
         message: data.message,
         honeypot: "",
         replyTo: "@",
