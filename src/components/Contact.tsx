@@ -1,7 +1,8 @@
 import { useState } from "react";
 import students from "../assets/students.jpg";
 import { useForm } from "react-hook-form";
-import { Resend } from "resend";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type Inputs = {
   name: string;
@@ -9,8 +10,6 @@ type Inputs = {
   tel: string;
   message: string;
 };
-
-const resend = new Resend(import.meta.env.VITE_RESEND_API_KEY);
 
 export const Contact = () => {
   const [loading, setLoading] = useState(false);
@@ -32,112 +31,132 @@ export const Contact = () => {
     console.log({ data });
     setLoading(true);
     try {
+      const body = {
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        honeypot: "",
+        replyTo: "@",
+        subject: "Legacy Learners Website Contact Form",
+        accessKey: import.meta.env.VITE_STATIC_FORMS_API_KEY,
+      };
+      const res = await fetch("https://api.staticforms.xyz/submit", {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      const json = await res.json();
+      if (json.success) {
+        toast("Thanks for your message👍. We will get back to you ASAP.", {
+          type: "success",
+        });
+      }
     } catch (error) {
-      console.log({ error });
+      toast(
+        "Sorry, something went wrong. Please try again later or try reaching out directly on our email.",
+        {
+          type: "error",
+        }
+      );
     } finally {
       setLoading(false);
     }
-    await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: "vitorboccio@gmail.com",
-      subject: "Hello World",
-      html: `
-        <strong>Name:<strong> ${data.name} <br />
-        <strong>Email:</strong> ${data.email} <br />
-        <strong>Phone:</strong> ${data.tel} <br />
-        <strong>Message:</strong> ${data.message} <br />
-      `,
-    });
   };
 
   const allVales = getValues();
 
   return (
-    <section className="contact_section" id="contact">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6">
-            <div className="d-flex justify-content-center d-md-block">
-              <h2>Contact Us</h2>
-            </div>
-            <form onSubmit={handleSubmit(handleForm)}>
-              <div className="contact_form-container">
-                <div className="holder">
-                  <label htmlFor="name">Name</label>
-                  <input
-                    id="name"
-                    type="text"
-                    placeholder="Name"
-                    {...register("name", { required: "Name is required" })}
-                  />
-                  <small className="error">
-                    {errors.name ? "Name is required" : null}
-                  </small>
-                </div>
-                <div className="holder">
-                  <label htmlFor="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    placeholder="Email"
-                    {...register("email", {
-                      required: !allVales.email && !allVales.tel ? true : false,
-                    })}
-                  />
-                  <small className="error">
-                    {errors.email ||
-                    (errors.tel && !allVales.email && !allVales.tel)
-                      ? "We need either your email or phone so we can get in touch"
-                      : null}
-                  </small>
-                </div>
-                <div className="holder">
-                  <label htmlFor="tel">Phone</label>
-                  <input
-                    type="tel"
-                    placeholder="Phone Number"
-                    {...register("tel", {
-                      required: !allVales.email && !allVales.tel ? true : false,
-                    })}
-                  />
-                  <small className="error">
-                    {errors.email ||
-                    (errors.tel && !allVales.email && !allVales.tel)
-                      ? "We need either your phone or email so we can get in touch"
-                      : null}
-                  </small>
-                </div>
-                <div className="holder">
-                  <label htmlFor="message">Message</label>
-                  <textarea
-                    placeholder="Message"
-                    rows={3}
-                    cols={50}
-                    id="message"
-                    {...register("message", { required: true })}
-                  />
-                  <small className="error">
-                    {errors.message ? "Message is required" : null}
-                  </small>
-                </div>
-                <div className="mt-4">
-                  <button disabled={loading} type="submit">
-                    {loading ? "loading..." : "send"}
-                  </button>
-                </div>
+    <>
+      <ToastContainer />
+      <section className="contact_section" id="contact">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6">
+              <div className="d-flex justify-content-center d-md-block">
+                <h2>Contact Us</h2>
               </div>
-            </form>
-          </div>
-          <div className="col-md-6">
-            <div className="contact_img-box">
-              <img
-                src={students}
-                alt="students green esmerald pencil and pen"
-              />
+              <form onSubmit={handleSubmit(handleForm)}>
+                <div className="contact_form-container">
+                  <div className="holder">
+                    <label htmlFor="name">Name</label>
+                    <input
+                      id="name"
+                      type="text"
+                      placeholder="Name"
+                      {...register("name", { required: "Name is required" })}
+                    />
+                    <small className="error">
+                      {errors.name ? "Name is required" : null}
+                    </small>
+                  </div>
+                  <div className="holder">
+                    <label htmlFor="email">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      placeholder="Email"
+                      {...register("email", {
+                        required:
+                          !allVales.email && !allVales.tel ? true : false,
+                      })}
+                    />
+                    <small className="error">
+                      {errors.email ||
+                      (errors.tel && !allVales.email && !allVales.tel)
+                        ? "We need either your email or phone so we can get in touch"
+                        : null}
+                    </small>
+                  </div>
+                  <div className="holder">
+                    <label htmlFor="tel">Phone</label>
+                    <input
+                      type="tel"
+                      placeholder="Phone Number"
+                      {...register("tel", {
+                        required:
+                          !allVales.email && !allVales.tel ? true : false,
+                      })}
+                    />
+                    <small className="error">
+                      {errors.email ||
+                      (errors.tel && !allVales.email && !allVales.tel)
+                        ? "We need either your phone or email so we can get in touch"
+                        : null}
+                    </small>
+                  </div>
+                  <div className="holder">
+                    <label htmlFor="message">Message</label>
+                    <textarea
+                      placeholder="Message"
+                      rows={3}
+                      cols={50}
+                      id="message"
+                      {...register("message", { required: true })}
+                    />
+                    <small className="error">
+                      {errors.message ? "Message is required" : null}
+                    </small>
+                  </div>
+                  <div className="mt-4">
+                    <button disabled={loading} type="submit">
+                      {loading ? "loading..." : "send"}
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div className="col-md-6">
+              <div className="contact_img-box">
+                <img
+                  src={students}
+                  alt="students green esmerald pencil and pen"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
