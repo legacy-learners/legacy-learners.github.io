@@ -17,6 +17,7 @@ export const Contact = () => {
     register,
     handleSubmit,
     getValues,
+    reset,
     formState: { errors },
   } = useForm<Inputs>({
     defaultValues: {
@@ -33,7 +34,7 @@ export const Contact = () => {
     try {
       const body = {
         name: data.name,
-        email: data.email,
+        email: `email: ${data.email} - phone: ${data.tel}  `,
         message: data.message,
         honeypot: "",
         replyTo: "@",
@@ -52,6 +53,7 @@ export const Contact = () => {
           type: "success",
           position: "bottom-center",
         });
+        reset();
       }
     } catch (error) {
       toast(
