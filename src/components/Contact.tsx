@@ -54,6 +54,11 @@ export const Contact = () => {
           position: "bottom-center",
         });
         reset();
+      } else {
+        toast("Sorry, something went wrong. Please try again later.", {
+          type: "error",
+          position: "bottom-center",
+        });
       }
     } catch (error) {
       toast(
