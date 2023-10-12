@@ -19,6 +19,7 @@ env:
   VITE_CONTENTFUL_DELIVERY_TOKEN: ${{ vars.VITE_CONTENTFUL_DELIVERY_TOKEN }}
   VITE_GMAPS_API_KEY: ${{ vars.VITE_GMAPS_API_KEY }}
   VITE_RESEND_API_KEY: ${{ vars.VITE_RESEND_API_KEY }}
+  VITE_STATICFORM_TOKEN: ${{ vars.VITE_STATICFORM_TOKEN }}
 
 jobs:
   build:
@@ -29,6 +30,7 @@ jobs:
           echo $VITE_CONTENTFUL_DELIVERY_TOKEN
           echo $VITE_GMAPS_API_KEY
           echo $VITE_RESEND_API_KEY
+          echo $VITE_STATICFORM_TOKEN
       - name: Checkout your repository using git
         uses: actions/checkout@v3
       - name: Install, build, and upload your site
