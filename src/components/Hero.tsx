@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { createClient } from "contentful";
 import logo from "../assets/logo.svg";
-import notebookPlanning from "../assets/notebook_planning.jpg";
-import hero_planning from "../assets/hero_planning.png";
 
 const contentfulClient = createClient({
   space: import.meta.env.VITE_CONTENTFUL_SPACE_ID ?? "",
