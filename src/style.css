@@ -259,6 +259,7 @@ a:focus {
 .hero_detail-box p {
   margin-top: 20px;
   margin-bottom: 35px;
+  text-align: justify;
 }
 
 nav.navbar a {
@@ -402,11 +403,6 @@ a:focus {
     width: 100%;
     font-size: 30px;
   }
-}
-
-.hero_detail-box p {
-  margin-top: 20px;
-  margin-bottom: 35px;
 }
 
 .client_detail-box {

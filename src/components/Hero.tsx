@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { createClient } from "contentful";
 import logo from "../assets/logo.svg";
+import notebookPlanning from "../assets/notebook_planning.jpg";
+import hero_planning from "../assets/hero_planning.png";
 
 const contentfulClient = createClient({
   space: import.meta.env.VITE_CONTENTFUL_SPACE_ID ?? "",
@@ -76,10 +78,17 @@ export const Hero = () => {
                   nurturing environment that fosters the growth and development
                   of young minds.
                 </p>
+
+                <p>
+                  We are preparing to start operating in the second week of
+                  January 2024. <br />
+                  We are currently accepting applications for children from 18
+                  months to 6 years old.
+                </p>
                 <div className="hero_btn-continer">
-                  <a href="" className="call_to-btn btn_white-border">
+                  <a href="#contact" className="call_to-btn btn_white-border">
                     {" "}
-                    Read More
+                    Get in touch!
                   </a>
                 </div>
               </div>

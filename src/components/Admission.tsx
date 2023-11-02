@@ -1,4 +1,5 @@
 import admission from "../assets/admission.png";
+
 export const Admission = () => (
   <section className="admission_section" id="admission">
     <div className="container">
