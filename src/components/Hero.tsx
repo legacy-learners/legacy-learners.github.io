@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createClient } from "contentful";
 import logo from "../assets/logo.svg";
 import { GetInTouch } from "./GetInTouch";
+import heroTest from "../assets/hero_test.png";
 
 const contentfulClient = createClient({
   space: import.meta.env.VITE_CONTENTFUL_SPACE_ID ?? "",
@@ -9,7 +10,7 @@ const contentfulClient = createClient({
 });
 
 export const Hero = () => {
-  const [entries, setEntries] = useState<any>();
+  const [setEntries] = useState<any>();
 
   useEffect(() => {
     const content = async () => {
@@ -91,7 +92,8 @@ export const Hero = () => {
               <div className="hero_img-container col-md-12 col-lg-6">
                 <div>
                   <img
-                    src={entries?.items[0].fields?.heroImage?.fields.file.url}
+                    // src={entries?.items[0].fields?.heroImage?.fields.file.url}
+                    src={heroTest}
                     alt="Hero Section Image"
                   />
                 </div>
