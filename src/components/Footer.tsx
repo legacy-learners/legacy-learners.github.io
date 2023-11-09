@@ -50,7 +50,10 @@ export const Footer = () => (
       <div className="container">
         <div className="social_container">
           <div className="social-box">
-            <a href="">
+            <a
+              href="https://www.instagram.com/legacylearners_dayhome/"
+              target="_blank"
+            >
               <img src={instagram} alt="instagram icon" />
             </a>
           </div>
