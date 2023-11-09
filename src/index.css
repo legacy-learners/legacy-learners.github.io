@@ -73,12 +73,12 @@ button:focus-visible {
 }
 
 .about_section a {
-  background-color: #6ebca8;
+  background-color: var(--main-color);
   color: #fefeff;
 }
 
 .admission_section a {
-  background-color: #fdd31d;
+  background-color: var(--main-color);
   color: #fefeff;
 }
 
@@ -150,8 +150,8 @@ button:focus-visible {
 }
 
 .info_section {
-  background-color: #363636;
-  color: #ffffff;
+  background-color: var(--secondary-color);
+  color: var(--text-normal);
   font-family: "Poppins", sans-serif;
 }
 
@@ -176,7 +176,7 @@ button:focus-visible {
 }
 
 .info_section ul li a {
-  color: #ffffff;
+  color: var(--text-normal);
 }
 
 .info_section ul li a:hover {
@@ -212,13 +212,12 @@ button:focus-visible {
 .social_container {
   width: 90%;
   margin: 0 auto;
-  border-top: 1px solid #898989;
+  border-top: 1px solid white;
   padding: 25px 0;
 }
 
 .info_section .social-box {
   margin: 0 auto;
-  /* width: 400px; */
   display: flex;
   justify-content: center;
 }
@@ -226,6 +225,7 @@ button:focus-visible {
 .info_section .social-box img {
   width: 35px;
   margin-right: 5px;
+  filter: brightness(0.3);
 }
 .footer_section {
   background-color: var(--main-color);
@@ -242,9 +242,11 @@ button:focus-visible {
 .footer_section a {
   color: #fdfdfe;
 }
+.info_section .info_logo-box {
+  filter: brightness(0.3);
+}
 
 .client_section h2,
-.client_section h5,
 .client_section p {
   font-weight: 600;
 }
@@ -253,11 +255,19 @@ button:focus-visible {
   text-align: center;
 }
 
-.client_section h5 {
-  font-size: 24px;
-  color: var(--main-color);
+.client_detail-box {
+  margin: 0 10px;
 }
 
+.client_detail-box h5 {
+  font-size: 24px;
+  text-align: left;
+  color: var(--main-color);
+  font-weight: 600;
+}
+.client_detail-box p {
+  text-align: justify;
+}
 .client_section .row {
   align-items: center;
   padding: 75px 0;
@@ -331,18 +341,6 @@ button:focus-visible {
   bottom: 20px;
 }
 
-.client_section .carousel-indicators li {
-  width: 25px;
-  height: 25px;
-  background-color: #6bd1bd;
-  border-radius: 100%;
-  opacity: 1;
-}
-
-.client_section .carousel-indicators li.active {
-  background-color: var(--main-color);
-}
-
 .schedule {
   justify-content: center;
 }
@@ -354,11 +352,15 @@ button:focus-visible {
 }
 
 .why_section a {
-  background-color: #6ebca8;
+  background-color: var(--main-color);
   color: #fefeff;
 }
 
 .determine_section a {
   background-color: #fdd31d;
   color: #fefeff;
+}
+
+.admission_detail-box p {
+  text-align: left;
 }

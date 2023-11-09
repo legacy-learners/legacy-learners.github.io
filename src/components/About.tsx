@@ -12,19 +12,19 @@ export const About = () => (
           <div className="about_detail-box">
             <h3>About our Day Home</h3>
             <p>
-              Welcome to Legacy Learners Dayhome, a Montessori inspired haven
-              where children embark on a journey of curiosity, independence, and
-              lifelong learning. <br />
-              <br />
-              Our founder, Ms. Adriana, brings a wealth of experience, with over
-              10 years of teaching children and a recent PhD in Education.
+              Welcome to Legacy Learners Day Home, where the Montessori
+              philosophy inspires a nurturing environment for children to
+              explore, discover, and grow at their own pace. Our approach
+              encourages curiosity, independence, and lifelong learning.
             </p>
-            <div className="">
-              <a href="" className="call_to-btn btn_white-border">
-                {" "}
-                Read More
-              </a>
-            </div>
+            <p>
+              We are proud to align our practices with Alberta's Early Learning
+              and Care Framework, ensuring that our program adheres to the
+              latest best practices and standards in early childhood development
+              within our province. By embracing this framework, we provide your
+              child with a high-quality early learning experience that sets the
+              stage for a successful educational journey
+            </p>
           </div>
         </div>
       </div>

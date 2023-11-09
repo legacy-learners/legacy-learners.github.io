@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { createClient } from "contentful";
 import logo from "../assets/logo.svg";
+import { GetInTouch } from "./GetInTouch";
 
 const contentfulClient = createClient({
   space: import.meta.env.VITE_CONTENTFUL_SPACE_ID ?? "",
@@ -80,14 +81,11 @@ export const Hero = () => {
                 <p>
                   We are preparing to start operating in the second week of
                   January 2024. <br />
-                  We are currently accepting applications for children from 18
+                  We are currently accepting applications for children from 15
                   months to 6 years old.
                 </p>
                 <div className="hero_btn-continer">
-                  <a href="#contact" className="call_to-btn btn_white-border">
-                    {" "}
-                    Get in touch!
-                  </a>
+                  <GetInTouch />
                 </div>
               </div>
               <div className="hero_img-container col-md-12 col-lg-6">

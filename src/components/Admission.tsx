@@ -1,4 +1,5 @@
 import admission from "../assets/admission.png";
+import { GetInTouch } from "./GetInTouch";
 
 export const Admission = () => (
   <section className="admission_section" id="admission">
@@ -8,16 +9,16 @@ export const Admission = () => (
           <div className="admission_detail-box">
             <h3>Admission open</h3>
             <p>
-              Admission now open! <br /> Enroll Today at Legacy Learners
-              Dayhome. Join us in nurturing young minds with Montessori inspired
-              care and creativity.
+              We are currently open for applications, even though we haven't
+              begun operations just yet. Our team is in the final stages of
+              preparing our space, and we're excited to welcome children
+              starting in the second week of January.
             </p>
-            <div className="">
-              <a href="" className="call_to-btn btn_white-border">
-                {" "}
-                Read More
-              </a>
-            </div>
+            <p>
+              We are currently accepting applications for children from 15
+              months to 6 years old.
+            </p>
+            <GetInTouch />
           </div>
         </div>
         <div className="col-md-6">

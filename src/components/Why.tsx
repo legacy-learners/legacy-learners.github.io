@@ -1,4 +1,5 @@
 import why from "../assets/why.png";
+import { GetInTouch } from "./GetInTouch";
 import determine from "../assets/determine.png";
 export const Why = () => (
   <>
@@ -14,18 +15,20 @@ export const Why = () => (
             <div className="why_detail-box">
               <h3>Why learn on Legacy Learners Dayhome</h3>
               <p>
-                Our program is rooted in the Montessori philosophy, fostering
-                independence, creativity, and a lifelong love of learning. Your
-                child will have the opportunity to explore, experiment, and
-                develop essential life skills in a carefully prepared
-                environment.
+                Our program is deeply rooted in the Montessori philosophy, which
+                not only promotes independence and creativity but also aligns
+                with the principles outlined in the Alberta Early Learning and
+                Care Framework. We believe in providing an environment where
+                your child can explore, experiment, and develop vital life
+                skills.
               </p>
-              <div className="">
-                <a href="" className="call_to-btn btn_white-border">
-                  {" "}
-                  Read More
-                </a>
-              </div>
+              <p>
+                Here, your child will have the opportunity to thrive, nurturing
+                a lifelong love of learning while developing the essential
+                skills they need to succeed.
+              </p>
+
+              <GetInTouch />
             </div>
           </div>
         </div>
