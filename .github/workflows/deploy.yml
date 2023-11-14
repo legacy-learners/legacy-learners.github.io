@@ -31,6 +31,7 @@ jobs:
           echo $VITE_GMAPS_API_KEY
           echo $VITE_RESEND_API_KEY
           echo $VITE_STATICFORM_TOKEN
+          echo $VITE_GA_MEASUREMENT_ID
       - name: Checkout your repository using git
         uses: actions/checkout@v3
       - name: Install, build, and upload your site
