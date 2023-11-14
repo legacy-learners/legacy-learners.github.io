@@ -10,7 +10,7 @@ const contentfulClient = createClient({
 });
 
 export const Hero = () => {
-  const [setEntries] = useState<any>();
+  const [_, setEntries] = useState<any>();
 
   useEffect(() => {
     const content = async () => {

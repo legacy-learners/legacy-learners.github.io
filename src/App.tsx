@@ -6,7 +6,9 @@ import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
 import { Testemonial } from "./components/Testemonial";
 import { Why } from "./components/Why";
+import ReactGA from "react-ga4";
 
+ReactGA.initialize(import.meta.env.VITE_GA_MEASUREMENT_ID);
 function App() {
   return (
     <>
