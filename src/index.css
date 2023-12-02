@@ -121,7 +121,7 @@ button:focus-visible {
   border: 3px solid var(--main-color);
 }
 
-.contact_form-container button {
+.contact_form-container button.submit {
   border: none;
   background-color: var(--main-color);
   color: #fff;
@@ -334,13 +334,6 @@ button:focus-visible {
   }
 }
 
-.client_section .carousel-indicators {
-  margin: 0;
-  justify-content: flex-end;
-  padding-right: 15px;
-  bottom: 20px;
-}
-
 .schedule {
   justify-content: center;
 }
@@ -363,4 +356,16 @@ button:focus-visible {
 
 .admission_detail-box p {
   text-align: left;
+}
+
+.about_detail-box,
+.admission_detail-box,
+.why_detail-box,
+.determine_detail-box {
+  & p {
+    text-align: justify;
+  }
+  & h3 {
+    text-align: left;
+  }
 }

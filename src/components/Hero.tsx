@@ -28,42 +28,40 @@ export const Hero = () => {
           <a className="navbar-brand" href="index.html">
             <img src={logo} alt="logo" />
           </a>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <div className="d-flex ml-auto flex-column flex-lg-row align-items-center">
-              <ul className="navbar-nav">
-                <li className="nav-item active">
-                  <a className="nav-link" href="#">
-                    Home
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#about">
-                    {" "}
-                    About
-                  </a>
-                </li>
+          <div id="navbarSupportedContent">
+            <ul className="navbar-nav">
+              <li className="nav-item active">
+                <a className="nav-link" href="#">
+                  Home
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#about">
+                  {" "}
+                  About
+                </a>
+              </li>
 
-                <li className="nav-item">
-                  <a className="nav-link" href="#admission">
-                    {" "}
-                    Admission
-                  </a>
-                </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#admission">
+                  {" "}
+                  Admission
+                </a>
+              </li>
 
-                <li className="nav-item">
-                  <a className="nav-link" href="#why">
-                    {" "}
-                    Why Us
-                  </a>
-                </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#why">
+                  {" "}
+                  Why Us
+                </a>
+              </li>
 
-                <li className="nav-item">
-                  <a className="nav-link" href="#contact">
-                    Contact Us
-                  </a>
-                </li>
-              </ul>
-            </div>
+              <li className="nav-item">
+                <a className="nav-link" href="#contact">
+                  Contact Us
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>

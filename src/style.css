@@ -19,20 +19,8 @@ body {
   padding: 75px 0;
 }
 
-.layout_padding2 {
-  padding: 45px 0;
-}
-
-.layout_padding2-top {
-  padding-top: 45px;
-}
-
 .layout_padding-top {
   padding-top: 75px;
-}
-
-.layout_padding-bottom {
-  padding-bottom: 75px;
 }
 
 .call_to-btn {
@@ -118,12 +106,7 @@ nav.navbar a {
   padding: 8px;
   white-space: pre-line;
 }
-.nav-wrapper {
-  width: 100%;
-  display: flex;
-  max-width: 1130px;
-  margin: 0 auto;
-}
+
 .header_section {
   padding-top: 10px;
   font-family: "Poppins", sans-serif;
@@ -131,12 +114,6 @@ nav.navbar a {
 
 nav.navbar.navbar-expand-lg {
   padding: 10px 0;
-}
-
-.custom_nav-container.navbar-expand-lg .navbar-nav .nav-link {
-  padding: 10px 20px;
-  color: #f7f6f7;
-  text-align: center;
 }
 
 a,
@@ -180,17 +157,6 @@ a:focus {
 
 .navbar-brand img {
   height: 50px;
-}
-
-.custom_nav-container .nav_search-btn {
-  background-image: url(images/search-icon.png);
-  background-size: 22px;
-  background-repeat: no-repeat;
-  background-position-y: 7px;
-  width: 35px;
-  height: 35px;
-  padding: 0;
-  border: none;
 }
 
 .navbar-brand {
@@ -269,6 +235,36 @@ nav.navbar a {
   max-width: 1130px;
   margin: 0 auto;
 }
+
+@media screen and (max-width: 991px) {
+  .nav-wrapper {
+    flex-direction: column;
+  }
+  #navbarSupportedContent {
+    width: 100%;
+    justify-content: center;
+  }
+  #navbarSupportedContent ul {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+#navbarSupportedContent {
+  display: flex;
+  align-items: center;
+  @media screen and (max-width: 991px) {
+    width: 100%;
+    justify-content: center;
+    & ul {
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+}
+
 .header_section {
   padding-top: 10px;
   font-family: "Poppins", sans-serif;
@@ -325,17 +321,6 @@ a:focus {
 
 .navbar-brand img {
   height: 50px;
-}
-
-.custom_nav-container .nav_search-btn {
-  background-image: url(images/search-icon.png);
-  background-size: 22px;
-  background-repeat: no-repeat;
-  background-position-y: 7px;
-  width: 35px;
-  height: 35px;
-  padding: 0;
-  border: none;
 }
 
 .navbar-brand {
