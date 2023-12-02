@@ -4,11 +4,8 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import dayjs from "dayjs";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { DatePicker } from "@mui/x-date-pickers";
 
 type Inputs = {
@@ -24,7 +21,6 @@ export const Contact = () => {
   const {
     register,
     handleSubmit,
-    getValues,
     reset,
     setValue,
     formState: { errors },
@@ -82,8 +78,6 @@ export const Contact = () => {
     }
   };
 
-  const allVales = getValues();
-
   return (
     <>
       <ToastContainer />
@@ -115,15 +109,11 @@ export const Contact = () => {
                         type="email"
                         id="email"
                         placeholder="Email"
-                        {...register("email", {
-                          required:
-                            !allVales.email && !allVales.phone ? true : false,
-                        })}
+                        {...register("email", { required: true })}
                       />
                       <small className="error">
-                        {errors.email ||
-                        (errors.phone && !allVales.email && !allVales.phone)
-                          ? "We need either your email or phone so we can get in touch"
+                        {errors.email
+                          ? "We need your email so we can get in touch"
                           : null}
                       </small>
                     </div>
@@ -132,15 +122,11 @@ export const Contact = () => {
                       <input
                         type="phone"
                         placeholder="Phone Number"
-                        {...register("phone", {
-                          required:
-                            !allVales.email && !allVales.phone ? true : false,
-                        })}
+                        {...register("phone", { required: true })}
                       />
                       <small className="error">
-                        {errors.email ||
-                        (errors.phone && !allVales.email && !allVales.phone)
-                          ? "We need either your phone or email so we can get in touch"
+                        {errors.phone
+                          ? "We need your phone so we can get in touch"
                           : null}
                       </small>
                     </div>
@@ -151,6 +137,7 @@ export const Contact = () => {
                       <DatePicker
                         disableFuture
                         views={["year", "month"]}
+                        {...register("childsAge", { required: true })}
                         onChange={(data: Date | null) => {
                           const date = new Date(data ?? new Date());
                           const month = date.getMonth() + 1;
@@ -159,7 +146,6 @@ export const Contact = () => {
                             "childsAge",
                             `month: ${month} / year: ${year}`
                           );
-                          console.log(`month: ${month}/ year: ${year}`);
                         }}
                         sx={{
                           width: "100%",
