@@ -44,9 +44,8 @@ export const Contact = () => {
         name: data.name,
         email: data.email,
         phone: data.phone,
-        message: `childs month and year: ${data.childsAge}
-        message: ${data.message}
-        `,
+        $childsAge: data.childsAge,
+        message: data.message,
       };
       const res = await fetch("https://api.staticforms.xyz/submit", {
         method: "POST",
