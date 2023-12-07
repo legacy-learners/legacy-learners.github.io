@@ -153,9 +153,6 @@ export const Contact = () => {
                           input: {
                             py: 0,
                           },
-                          button: {
-                            background: "red",
-                          },
                         }}
                       />
                       <small className="error">
