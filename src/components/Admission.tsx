@@ -15,8 +15,8 @@ export const Admission = () => (
               starting in the second week of January.
             </p>
             <p>
-              We are currently accepting applications for children from 15
-              months to 6 years old.
+              We are currently accepting applications for children from 3 to 6
+              years old.
             </p>
             <GetInTouch />
           </div>

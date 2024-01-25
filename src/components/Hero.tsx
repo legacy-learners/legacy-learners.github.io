@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { createClient } from "contentful";
 import logo from "../assets/logo.svg";
 import { GetInTouch } from "./GetInTouch";
@@ -28,6 +28,7 @@ export const Hero = () => {
           <a className="navbar-brand" href="index.html">
             <img src={logo} alt="logo" />
           </a>
+
           <div id="navbarSupportedContent">
             <ul className="navbar-nav">
               <li className="nav-item active">
@@ -80,8 +81,8 @@ export const Hero = () => {
                 <p>
                   We are preparing to start operating in the second week of
                   January 2024. <br />
-                  We are currently accepting applications for children from 15
-                  months to 6 years old.
+                  We are currently accepting applications for children from 3 to
+                  6 years old.
                 </p>
                 <div className="hero_btn-continer">
                   <GetInTouch />
@@ -89,11 +90,7 @@ export const Hero = () => {
               </div>
               <div className="hero_img-container col-md-12 col-lg-6">
                 <div>
-                  <img
-                    // src={entries?.items[0].fields?.heroImage?.fields.file.url}
-                    src={heroTest}
-                    alt="Hero Section Image"
-                  />
+                  <img src={heroTest} alt="Hero Section Image" />
                 </div>
               </div>
             </div>

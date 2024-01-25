@@ -278,6 +278,9 @@ nav.navbar.navbar-expand-lg {
   padding: 10px 20px;
   color: #f7f6f7;
   text-align: center;
+  @media screen and (max-width: 767px) {
+    padding: 10px;
+  }
 }
 
 a,
