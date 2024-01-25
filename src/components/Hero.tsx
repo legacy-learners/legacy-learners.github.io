@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { createClient } from "contentful";
 import logo from "../assets/logo.svg";
 import { GetInTouch } from "./GetInTouch";
