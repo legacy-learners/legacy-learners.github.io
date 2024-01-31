@@ -9,19 +9,19 @@ export const Nav = () => {
       <div className="navigation">
         <ul onClick={() => setHamburgerOpen(false)}>
           <li>
-            <a href="#"></a>Home
+            <a href="#">Home</a>
           </li>
           <li>
-            <a href="#about"></a>About
+            <a href="#about">About</a>
           </li>
           <li>
-            <a href="#admission"></a>Admission
+            <a href="#admission">Admission</a>
           </li>
           <li>
-            <a href="#why"></a>Why Us
+            <a href="#why">Why Us</a>
           </li>
           <li>
-            <a href="#contact"></a>Contact Us
+            <a href="#contact">Contact Us</a>
           </li>
         </ul>
         <div
@@ -55,6 +55,11 @@ export const Nav = () => {
           list-style-type: none;
           padding-right: 10px;
           margin-left: 10px;
+        }
+
+        .navigation ul li a {
+          color: white;
+          width: 100%;
         }
 
         @media (max-width: 991px) {
