@@ -162,7 +162,9 @@ a:focus {
 .navbar-brand {
   display: flex;
   align-items: center;
-  margin: 0 auto;
+  @media screen and (max-width: 991px) {
+    margin: 0 auto;
+  }
 }
 
 .navbar-brand span {
@@ -234,6 +236,7 @@ nav.navbar a {
   display: flex;
   max-width: 1130px;
   margin: 0 auto;
+  justify-content: space-between;
 }
 
 #navbarSupportedContent {
@@ -300,12 +303,6 @@ a:focus {
 
 .navbar-brand img {
   height: 50px;
-}
-
-.navbar-brand {
-  display: flex;
-  align-items: center;
-  margin: 0 auto;
 }
 
 .navbar-brand span {

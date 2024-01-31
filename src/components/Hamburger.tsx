@@ -20,8 +20,8 @@ export const Hamburger = ({ isOpen }: HamburgerProps) => {
           flex-flow: column nowrap;
           z-index: 10;
           position: absolute;
-          top: 10px;
-          right: 10px;
+          top: 12px;
+          right: 15px;
         }
 
         .burger {
