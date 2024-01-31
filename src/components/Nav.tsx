@@ -7,12 +7,22 @@ export const Nav = () => {
   return (
     <div>
       <div className="navigation">
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Admission</li>
-          <li>Why Us</li>
-          <li>Contact Us</li>
+        <ul onClick={() => setHamburgerOpen(false)}>
+          <li>
+            <a href="#"></a>Home
+          </li>
+          <li>
+            <a href="#about"></a>About
+          </li>
+          <li>
+            <a href="#admission"></a>Admission
+          </li>
+          <li>
+            <a href="#why"></a>Why Us
+          </li>
+          <li>
+            <a href="#contact"></a>Contact Us
+          </li>
         </ul>
         <div
           className="hamburger"
