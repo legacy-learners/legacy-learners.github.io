@@ -15,6 +15,10 @@ export const Why = () => (
             <div className="why_detail-box">
               <h3>Why learn on Legacy Learners Dayhome</h3>
               <p>
+                We are a <strong>licensed dayhome</strong> and we do have access
+                to grants and subsidies for eligible parents.
+              </p>
+              <p>
                 Our program is deeply rooted in the Montessori philosophy, which
                 not only promotes independence and creativity but also aligns
                 with the principles outlined in the Alberta Early Learning and

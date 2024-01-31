@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { createClient } from "contentful";
+import { Nav } from "./Nav";
 import logo from "../assets/logo.svg";
 import { GetInTouch } from "./GetInTouch";
 import heroTest from "../assets/hero_test.png";
@@ -28,42 +29,7 @@ export const Hero = () => {
           <a className="navbar-brand" href="index.html">
             <img src={logo} alt="logo" />
           </a>
-
-          <div id="navbarSupportedContent">
-            <ul className="navbar-nav">
-              <li className="nav-item active">
-                <a className="nav-link" href="#">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#about">
-                  {" "}
-                  About
-                </a>
-              </li>
-
-              <li className="nav-item">
-                <a className="nav-link" href="#admission">
-                  {" "}
-                  Admission
-                </a>
-              </li>
-
-              <li className="nav-item">
-                <a className="nav-link" href="#why">
-                  {" "}
-                  Why Us
-                </a>
-              </li>
-
-              <li className="nav-item">
-                <a className="nav-link" href="#contact">
-                  Contact Us
-                </a>
-              </li>
-            </ul>
-          </div>
+          <Nav />
         </div>
       </nav>
       <div className="top_container">
@@ -79,8 +45,6 @@ export const Hero = () => {
                 </p>
 
                 <p>
-                  We are preparing to start operating in the second week of
-                  January 2024. <br />
                   We are currently accepting applications for children from 3 to
                   6 years old.
                 </p>

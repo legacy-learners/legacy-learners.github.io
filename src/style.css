@@ -236,33 +236,9 @@ nav.navbar a {
   margin: 0 auto;
 }
 
-@media screen and (max-width: 991px) {
-  .nav-wrapper {
-    flex-direction: column;
-  }
-  #navbarSupportedContent {
-    width: 100%;
-    justify-content: center;
-  }
-  #navbarSupportedContent ul {
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-}
-
 #navbarSupportedContent {
   display: flex;
   align-items: center;
-  @media screen and (max-width: 991px) {
-    width: 100%;
-    justify-content: center;
-    & ul {
-      flex-direction: row;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-  }
 }
 
 .header_section {

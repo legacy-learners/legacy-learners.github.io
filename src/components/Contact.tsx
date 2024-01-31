@@ -3,6 +3,7 @@ import students from "../assets/students.jpg";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { differenceInMonths, differenceInYears } from "date-fns";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -68,7 +69,7 @@ export const Contact = () => {
       }
     } catch (error) {
       toast(
-        "Sorry, something went wrong. Please try again later or try reaching out directly on our email.",
+        "Sorry, something went wrong. Please try again later or try reaching out directly on our email legacylearnersdayhome@gmail.com.",
         {
           type: "error",
         }
@@ -120,7 +121,7 @@ export const Contact = () => {
                     <div className="holder">
                       <label htmlFor="phone">Phone</label>
                       <input
-                        type="phone"
+                        type="tel"
                         placeholder="Phone Number"
                         {...register("phone", { required: true })}
                       />
@@ -139,12 +140,24 @@ export const Contact = () => {
                         views={["year", "month"]}
                         {...register("childsAge", { required: true })}
                         onChange={(data: Date | null) => {
-                          const date = new Date(data ?? new Date());
-                          const month = date.getMonth() + 1;
-                          const year = date.getFullYear();
+                          const currentDate = new Date();
+                          const selectedDate = new Date(data ?? currentDate);
+                          const month = selectedDate.getMonth() + 1;
+                          const year = selectedDate.getFullYear();
+
+                          const totalMonths = differenceInMonths(
+                            currentDate,
+                            selectedDate
+                          );
+                          const years = differenceInYears(
+                            currentDate,
+                            selectedDate
+                          );
+                          const remainingMonths = totalMonths % 12;
+
                           setValue(
                             "childsAge",
-                            `month: ${month} / year: ${year}`
+                            `month: ${month} / year: ${year} / age: ${years} years and ${remainingMonths} months`
                           );
                         }}
                         sx={{

@@ -9,14 +9,9 @@ export const Admission = () => (
           <div className="admission_detail-box">
             <h3>Admission open</h3>
             <p>
-              We are currently open for applications, even though we haven't
-              begun operations just yet. Our team is in the final stages of
-              preparing our space, and we're excited to welcome children
-              starting in the second week of January.
-            </p>
-            <p>
-              We are currently accepting applications for children from 3 to 6
-              years old.
+              We are currently open for applications from 3 to 6 years old. Our
+              team is very excited to show our space and meet parents and childs
+              for a greet and meet!
             </p>
             <GetInTouch />
           </div>
