@@ -157,7 +157,9 @@ export const Contact = () => {
 
                           setValue(
                             "childsAge",
-                            `month: ${month} / year: ${year} / age: ${years} years and ${remainingMonths} months`
+                            `month: ${month} / 
+                            year: ${year} / 
+                            age: ${years} years and ${remainingMonths} months`
                           );
                         }}
                         sx={{

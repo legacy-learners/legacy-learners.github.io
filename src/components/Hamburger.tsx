@@ -19,9 +19,7 @@ export const Hamburger = ({ isOpen }: HamburgerProps) => {
           justify-content: space-around;
           flex-flow: column nowrap;
           z-index: 10;
-          position: absolute;
-          top: 12px;
-          right: 15px;
+          
         }
 
         .burger {

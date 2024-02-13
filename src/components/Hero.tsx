@@ -45,8 +45,10 @@ export const Hero = () => {
                 </p>
 
                 <p>
-                  We are currently accepting applications for children from 3 to
-                  6 years old.
+                  We are currently fully booked and no longer taking
+                  applications. We welcome parents to enquire for future
+                  openings though, should your needs are for the next coming
+                  months.
                 </p>
                 <div className="hero_btn-continer">
                   <GetInTouch />

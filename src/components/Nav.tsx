@@ -41,6 +41,9 @@ export const Nav = () => {
           color: white;
           margin: 0 auto;
           justify-content: center;
+          min-width: 50px;
+          position: relative;
+          overflow: ${hamburgerOpen ? "visible" : "hidden"};
         }
 
         .navigation ul {
@@ -67,7 +70,7 @@ export const Nav = () => {
             flex-direction: column;
             height: 100vh;
             position: absolute;
-            top: 85px;
+            top: 75px;
             right: ${hamburgerOpen ? 0 : "-400px"};
             min-width: 400px;
             max-width: 85%;
