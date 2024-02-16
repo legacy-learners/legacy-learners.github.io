@@ -7,7 +7,7 @@ export const Admission = () => (
       <div className="row">
         <div className="col-md-6">
           <div className="admission_detail-box">
-            <h3>Admission open</h3>
+            <h3>Admission</h3>
             <p>
               We are currently fully booked and no longer taking applications.
               We welcome parents to enquire for future openings though, should
