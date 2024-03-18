@@ -1,27 +1,9 @@
-import { useEffect, useState } from "react";
-import { createClient } from "contentful";
 import { Nav } from "./Nav";
 import logo from "../assets/logo.svg";
 import { GetInTouch } from "./GetInTouch";
 import heroTest from "../assets/hero_test.png";
 
-const contentfulClient = createClient({
-  space: import.meta.env.VITE_CONTENTFUL_SPACE_ID ?? "",
-  accessToken: import.meta.env.VITE_CONTENTFUL_DELIVERY_TOKEN ?? "",
-});
-
 export const Hero = () => {
-  const [_, setEntries] = useState<any>();
-
-  useEffect(() => {
-    const content = async () => {
-      const entries = await contentfulClient.getEntries({
-        content_type: "hero",
-      });
-      setEntries(entries);
-    };
-    content();
-  }, []);
   return (
     <>
       <nav className="navbar navbar-expand-lg custom_nav-container">
@@ -43,13 +25,18 @@ export const Hero = () => {
                   nurturing environment that fosters the growth and development
                   of young minds.
                 </p>
-
                 <p>
+                  If you are interested in enrolling your child, please get in
+                  touch.
+                  <br />
+                  We currently have openings for children aged 3-5 years old.
+                </p>
+                {/* <p>
                   We are currently fully booked and no longer taking
                   applications. We welcome parents to enquire for future
                   openings though, should your needs are for the next coming
                   months.
-                </p>
+                </p> */}
                 <div className="hero_btn-continer">
                   <GetInTouch />
                 </div>
