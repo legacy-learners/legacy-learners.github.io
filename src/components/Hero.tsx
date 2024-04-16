@@ -25,18 +25,18 @@ export const Hero = () => {
                   nurturing environment that fosters the growth and development
                   of young minds.
                 </p>
-                <p>
+                {/* <p>
                   If you are interested in enrolling your child, please get in
                   touch.
                   <br />
                   We currently have openings for children aged 3-5 years old.
-                </p>
-                {/* <p>
+                </p> */}
+                <p>
                   We are currently fully booked and no longer taking
                   applications. We welcome parents to enquire for future
                   openings though, should your needs are for the next coming
                   months.
-                </p> */}
+                </p>
                 <div className="hero_btn-continer">
                   <GetInTouch />
                 </div>
