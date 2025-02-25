@@ -25,18 +25,20 @@ export const Hero = () => {
                   nurturing environment that fosters the growth and development
                   of young minds.
                 </p>
-                {/* <p>
-                  If you are interested in enrolling your child, please get in
-                  touch.
-                  <br />
-                  We currently have openings for children aged 3-5 years old.
-                </p> */}
                 <p>
+                  If you are interested in enrolling your child, please get in
+                  touch. We accept children from 18 months to 4 years.
+                  <br /> <br />
+                  We are <strong>accepting applications</strong> for our waiting
+                  list and will start interviewing families in July for spots
+                  available on August 2025.
+                </p>
+                {/* <p>
                   We are currently fully booked and no longer taking
                   applications. We welcome parents to enquire for future
                   openings though, should your needs are for the next coming
                   months.
-                </p>
+                </p> */}
                 <div className="hero_btn-continer">
                   <GetInTouch />
                 </div>
