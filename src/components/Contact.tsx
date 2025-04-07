@@ -20,8 +20,9 @@ type Inputs = {
 // Declare global grecaptcha
 declare global {
   interface Window {
-    grecaptcha: string;
-    onReCaptchaLoad: () => void;
+    // eslint-disable-next-line
+    grecaptcha: any;
+    onReCaptchaLoad: (() => void) | undefined;
   }
 }
 
@@ -47,45 +48,58 @@ export const Contact = () => {
     },
   });
 
-  console.log({ recaptchaLoaded });
-
   // Initialize reCAPTCHA
   useEffect(() => {
-    // Create a script element for reCAPTCHA
-    const script = document.createElement("script");
-    script.src = "https://www.google.com/recaptcha/api.js?render=explicit";
-    script.async = true;
-    script.defer = true;
-
-    // Define the callback function that will be called when reCAPTCHA is loaded
+    // Add callback function to window object before loading the script
     window.onReCaptchaLoad = () => {
       setRecaptchaLoaded(true);
-      if (recaptchaRef.current) {
-        window.grecaptcha.render(recaptchaRef.current, {
-          sitekey: "6LesPw0rAAAAACeJ_GG3qGp9FDKy_wbql_b1pp6-", // Replace with your actual site key
-          callback: (token: string) => setRecaptchaToken(token),
-          "expired-callback": () => setRecaptchaToken(""),
-        });
-      }
     };
 
-    script.onload = window.onReCaptchaLoad;
+    // Create a script element for reCAPTCHA
+    const script = document.createElement("script");
+    script.src =
+      "https://www.google.com/recaptcha/api.js?onload=onReCaptchaLoad&render=explicit";
+    script.async = true;
+    script.defer = true;
 
     // Append the script to the document
     document.body.appendChild(script);
 
     // Clean up
     return () => {
-      document.body.removeChild(script);
-      delete window.onReCaptchaLoad;
+      if (script.parentNode) {
+        document.body.removeChild(script);
+      }
+      // eslint-disable-next-line
+      (window as any).onReCaptchaLoad = undefined;
     };
   }, []);
+
+  // Render reCAPTCHA once it's loaded
+  useEffect(() => {
+    if (recaptchaLoaded && recaptchaRef.current && window.grecaptcha) {
+      try {
+        window.grecaptcha.render(recaptchaRef.current, {
+          sitekey: import.meta.env.VITE_RECAPTCHA_SITE_KEY, // Get key from environment variables
+          callback: (token: string) => setRecaptchaToken(token),
+          "expired-callback": () => setRecaptchaToken(""),
+        });
+      } catch (error) {
+        console.error("Error rendering reCAPTCHA:", error);
+      }
+    }
+  }, [recaptchaLoaded]);
 
   const handleForm = async (data: Inputs) => {
     console.log({ data });
 
+    // Get the reCAPTCHA response directly from grecaptcha
+    const captchaResponse = window.grecaptcha
+      ? window.grecaptcha.getResponse()
+      : "";
+
     // Verify reCAPTCHA token exists
-    if (!recaptchaToken) {
+    if (!captchaResponse) {
       toast("Please complete the reCAPTCHA verification.", {
         type: "error",
         position: "bottom-center",
@@ -103,7 +117,7 @@ export const Contact = () => {
         phone: data.phone,
         $childsAge: data.childsAge,
         message: data.message,
-        "g-recaptcha-response": recaptchaToken, // Include the reCAPTCHA token
+        "g-recaptcha-response": captchaResponse, // Include the reCAPTCHA token
       };
       const res = await fetch("https://api.staticforms.xyz/submit", {
         method: "POST",
