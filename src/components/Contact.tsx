@@ -143,23 +143,9 @@ export const Contact = () => {
   const handleForm = async (data: Inputs) => {
     console.log({ data });
 
-    // Check if grecaptcha is available
-    if (!window.grecaptcha) {
-      toast(
-        "reCAPTCHA is not available. Please refresh the page and try again.",
-        {
-          type: "error",
-          position: "bottom-center",
-        }
-      );
-      return;
-    }
-
-    // Get the response
     const captchaResponse = window.grecaptcha.getResponse();
     console.log("reCAPTCHA response length:", captchaResponse?.length || 0);
 
-    // Verify reCAPTCHA token exists
     if (!captchaResponse) {
       toast("Please complete the reCAPTCHA verification.", {
         type: "error",
@@ -192,27 +178,15 @@ export const Contact = () => {
       const json = await res.json();
       console.log("Form submission response:", json);
 
-      if (json.success) {
-        toast("Thanks for your message👍. We will get back to you ASAP.", {
-          type: "success",
-          position: "bottom-center",
-        });
-        reset();
+      toast("Thanks for your message👍. We will get back to you ASAP.", {
+        type: "success",
+        position: "bottom-center",
+      });
+      reset();
 
-        // Reset reCAPTCHA
-        if (window.grecaptcha) {
-          window.grecaptcha.reset();
-          setRecaptchaToken("");
-        }
-      } else {
-        console.error("Form submission error:", json);
-        toast(
-          `Sorry, something went wrong: ${json.message || "Unknown error"}`,
-          {
-            type: "error",
-            position: "bottom-center",
-          }
-        );
+      if (window.grecaptcha) {
+        window.grecaptcha.reset();
+        setRecaptchaToken("");
       }
     } catch (error) {
       console.error("Form submission exception:", error);
