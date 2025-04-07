@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import students from "../assets/students.jpg";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
@@ -17,8 +17,20 @@ type Inputs = {
   childsAge: string;
 };
 
+// Declare global grecaptcha
+declare global {
+  interface Window {
+    grecaptcha: string;
+    onReCaptchaLoad: () => void;
+  }
+}
+
 export const Contact = () => {
   const [loading, setLoading] = useState(false);
+  const recaptchaRef = useRef<HTMLDivElement>(null);
+  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -35,8 +47,52 @@ export const Contact = () => {
     },
   });
 
+  console.log({ recaptchaLoaded });
+
+  // Initialize reCAPTCHA
+  useEffect(() => {
+    // Create a script element for reCAPTCHA
+    const script = document.createElement("script");
+    script.src = "https://www.google.com/recaptcha/api.js?render=explicit";
+    script.async = true;
+    script.defer = true;
+
+    // Define the callback function that will be called when reCAPTCHA is loaded
+    window.onReCaptchaLoad = () => {
+      setRecaptchaLoaded(true);
+      if (recaptchaRef.current) {
+        window.grecaptcha.render(recaptchaRef.current, {
+          sitekey: "6LesPw0rAAAAACeJ_GG3qGp9FDKy_wbql_b1pp6-", // Replace with your actual site key
+          callback: (token: string) => setRecaptchaToken(token),
+          "expired-callback": () => setRecaptchaToken(""),
+        });
+      }
+    };
+
+    script.onload = window.onReCaptchaLoad;
+
+    // Append the script to the document
+    document.body.appendChild(script);
+
+    // Clean up
+    return () => {
+      document.body.removeChild(script);
+      delete window.onReCaptchaLoad;
+    };
+  }, []);
+
   const handleForm = async (data: Inputs) => {
     console.log({ data });
+
+    // Verify reCAPTCHA token exists
+    if (!recaptchaToken) {
+      toast("Please complete the reCAPTCHA verification.", {
+        type: "error",
+        position: "bottom-center",
+      });
+      return;
+    }
+
     setLoading(true);
     try {
       const body = {
@@ -47,6 +103,7 @@ export const Contact = () => {
         phone: data.phone,
         $childsAge: data.childsAge,
         message: data.message,
+        "g-recaptcha-response": recaptchaToken, // Include the reCAPTCHA token
       };
       const res = await fetch("https://api.staticforms.xyz/submit", {
         method: "POST",
@@ -61,6 +118,12 @@ export const Contact = () => {
           position: "bottom-center",
         });
         reset();
+
+        // Reset reCAPTCHA
+        if (window.grecaptcha) {
+          window.grecaptcha.reset();
+          setRecaptchaToken("");
+        }
       } else {
         toast("Sorry, something went wrong. Please try again later.", {
           type: "error",
@@ -186,9 +249,20 @@ export const Contact = () => {
                         {errors.message ? "Message is required" : null}
                       </small>
                     </div>
+
+                    {/* reCAPTCHA container */}
+                    <div className="holder">
+                      <div ref={recaptchaRef}></div>
+                      {!recaptchaToken && (
+                        <small className="error">
+                          Please complete the reCAPTCHA verification
+                        </small>
+                      )}
+                    </div>
+
                     <div className="mt-4">
                       <button
-                        disabled={loading}
+                        disabled={loading || !recaptchaToken}
                         className="submit"
                         type="submit"
                       >
