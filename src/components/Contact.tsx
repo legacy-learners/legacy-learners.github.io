@@ -31,6 +31,7 @@ export const Contact = () => {
   const recaptchaRef = useRef<HTMLDivElement>(null);
   const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
   const [recaptchaToken, setRecaptchaToken] = useState("");
+  const [recaptchaError, setRecaptchaError] = useState<string | null>(null);
 
   const {
     register,
@@ -48,44 +49,93 @@ export const Contact = () => {
     },
   });
 
-  // Initialize reCAPTCHA
+  // Use a simpler approach with the explicit onload callback
   useEffect(() => {
-    // Add callback function to window object before loading the script
+    // Define the callback function
     window.onReCaptchaLoad = () => {
+      console.log("reCAPTCHA script loaded");
       setRecaptchaLoaded(true);
     };
 
-    // Create a script element for reCAPTCHA
+    // Create script element
     const script = document.createElement("script");
     script.src =
       "https://www.google.com/recaptcha/api.js?onload=onReCaptchaLoad&render=explicit";
     script.async = true;
-    script.defer = true;
 
-    // Append the script to the document
-    document.body.appendChild(script);
+    // Add error handling for the script
+    script.onerror = (e) => {
+      console.error("Error loading reCAPTCHA script:", e);
+      setRecaptchaError(
+        "Failed to load reCAPTCHA. Please refresh the page and try again."
+      );
+    };
 
-    // Clean up
+    // Append to document
+    document.head.appendChild(script);
+
     return () => {
+      // Clean up
       if (script.parentNode) {
-        document.body.removeChild(script);
+        script.parentNode.removeChild(script);
       }
-      // eslint-disable-next-line
-      (window as any).onReCaptchaLoad = undefined;
+      window.onReCaptchaLoad = undefined;
     };
   }, []);
 
-  // Render reCAPTCHA once it's loaded
+  // This effect runs when the script is loaded
   useEffect(() => {
-    if (recaptchaLoaded && recaptchaRef.current && window.grecaptcha) {
+    if (recaptchaLoaded && recaptchaRef.current) {
       try {
-        window.grecaptcha.render(recaptchaRef.current, {
-          sitekey: "6LcnXA0rAAAAAAS6kPdlqYn-KCboRvIwvZNAt-ub",
-          callback: (token: string) => setRecaptchaToken(token),
-          "expired-callback": () => setRecaptchaToken(""),
-        });
+        console.log("Attempting to render reCAPTCHA");
+
+        // Verify grecaptcha is available
+        if (!window.grecaptcha || !window.grecaptcha.render) {
+          console.error("grecaptcha not available");
+          setRecaptchaError(
+            "reCAPTCHA is not available. Please check your internet connection and try again."
+          );
+          return;
+        }
+
+        // Use a try-catch to capture any render errors
+        try {
+          // For debugging
+          console.log(
+            "Site key being used:",
+            import.meta.env.VITE_RECAPTCHA_SITE_KEY ||
+              "6LdSZA0rAAAAAGqi6IQto1iPNUkgHPOqKn9urHMw"
+          );
+
+          window.grecaptcha.render(recaptchaRef.current, {
+            // Try using the environment variable first, fall back to the hardcoded key
+            sitekey:
+              import.meta.env.VITE_RECAPTCHA_SITE_KEY ||
+              "6LdSZA0rAAAAAGqi6IQto1iPNUkgHPOqKn9urHMw",
+            callback: (token: string) => {
+              console.log("reCAPTCHA callback received");
+              setRecaptchaToken(token);
+            },
+            "expired-callback": () => setRecaptchaToken(""),
+            // eslint-disable-next-line
+            "error-callback": (error: any) => {
+              console.error("reCAPTCHA widget error:", error);
+              setRecaptchaError(
+                "There was an error with the reCAPTCHA verification. Please try again."
+              );
+            },
+          });
+        } catch (renderError) {
+          console.error("Error rendering reCAPTCHA widget:", renderError);
+          setRecaptchaError(
+            "Could not initialize reCAPTCHA. It may already be rendered or there was an error."
+          );
+        }
       } catch (error) {
-        console.error("Error rendering reCAPTCHA:", error);
+        console.error("Top level reCAPTCHA error:", error);
+        setRecaptchaError(
+          "An unexpected error occurred with reCAPTCHA. Please refresh the page."
+        );
       }
     }
   }, [recaptchaLoaded]);
@@ -93,10 +143,21 @@ export const Contact = () => {
   const handleForm = async (data: Inputs) => {
     console.log({ data });
 
-    // Get the reCAPTCHA response directly from grecaptcha
-    const captchaResponse = window.grecaptcha
-      ? window.grecaptcha.getResponse()
-      : "";
+    // Check if grecaptcha is available
+    if (!window.grecaptcha) {
+      toast(
+        "reCAPTCHA is not available. Please refresh the page and try again.",
+        {
+          type: "error",
+          position: "bottom-center",
+        }
+      );
+      return;
+    }
+
+    // Get the response
+    const captchaResponse = window.grecaptcha.getResponse();
+    console.log("reCAPTCHA response length:", captchaResponse?.length || 0);
 
     // Verify reCAPTCHA token exists
     if (!captchaResponse) {
@@ -117,8 +178,11 @@ export const Contact = () => {
         phone: data.phone,
         $childsAge: data.childsAge,
         message: data.message,
-        "g-recaptcha-response": captchaResponse, // Include the reCAPTCHA token
+        "g-recaptcha-response": captchaResponse,
       };
+
+      console.log("Submitting form with reCAPTCHA response");
+
       const res = await fetch("https://api.staticforms.xyz/submit", {
         method: "POST",
         body: JSON.stringify(body),
@@ -126,6 +190,8 @@ export const Contact = () => {
       });
 
       const json = await res.json();
+      console.log("Form submission response:", json);
+
       if (json.success) {
         toast("Thanks for your message👍. We will get back to you ASAP.", {
           type: "success",
@@ -139,17 +205,20 @@ export const Contact = () => {
           setRecaptchaToken("");
         }
       } else {
-        toast("Sorry, something went wrong. Please try again later.", {
-          type: "error",
-          position: "bottom-center",
-        });
+        console.error("Form submission error:", json);
+        toast(
+          `Sorry, something went wrong: ${json.message || "Unknown error"}`,
+          {
+            type: "error",
+            position: "bottom-center",
+          }
+        );
       }
     } catch (error) {
+      console.error("Form submission exception:", error);
       toast(
         "Sorry, something went wrong. Please try again later or try reaching out directly on our email legacylearnersdayhome@gmail.com.",
-        {
-          type: "error",
-        }
+        { type: "error" }
       );
     } finally {
       setLoading(false);
@@ -169,6 +238,7 @@ export const Contact = () => {
                 </div>
                 <form onSubmit={handleSubmit(handleForm)}>
                   <div className="contact_form-container">
+                    {/* Form fields... */}
                     <div className="holder">
                       <label htmlFor="name">Name</label>
                       <input
@@ -267,11 +337,13 @@ export const Contact = () => {
                     {/* reCAPTCHA container */}
                     <div className="holder">
                       <div ref={recaptchaRef}></div>
-                      {!recaptchaToken && (
+                      {recaptchaError ? (
+                        <small className="error">{recaptchaError}</small>
+                      ) : !recaptchaToken ? (
                         <small className="error">
                           Please complete the reCAPTCHA verification
                         </small>
-                      )}
+                      ) : null}
                     </div>
 
                     <div className="mt-4">
