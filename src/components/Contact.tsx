@@ -80,7 +80,7 @@ export const Contact = () => {
     if (recaptchaLoaded && recaptchaRef.current && window.grecaptcha) {
       try {
         window.grecaptcha.render(recaptchaRef.current, {
-          sitekey: import.meta.env.VITE_RECAPTCHA_SITE_KEY, // Get key from environment variables
+          sitekey: "6LcnXA0rAAAAAAS6kPdlqYn-KCboRvIwvZNAt-ub",
           callback: (token: string) => setRecaptchaToken(token),
           "expired-callback": () => setRecaptchaToken(""),
         });
