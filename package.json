@@ -13,6 +13,7 @@
     "@contentful/rich-text-html-renderer": "^16.1.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@flagpole/react": "^0.0.4",
     "@mui/material": "^5.14.19",
     "@mui/x-date-pickers": "^6.18.2",
     "contentful": "^10.6.0",
