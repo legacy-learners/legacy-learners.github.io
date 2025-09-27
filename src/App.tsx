@@ -1,4 +1,3 @@
-import { FeatureFlagProvider } from "@flagpole/react";
 import "./App.css";
 import { About } from "./components/About";
 import { Admission } from "./components/Admission";
@@ -12,7 +11,7 @@ import ReactGA from "react-ga4";
 ReactGA.initialize(import.meta.env.VITE_GA_MEASUREMENT_ID);
 function App() {
   return (
-    <FeatureFlagProvider apiKey="fp_live_e9cb4c83a08a2c176373919d495960a08e13f3eace6435e0">
+    <>
       <Hero />
       <div className="common_style">
         <About />
@@ -22,7 +21,7 @@ function App() {
       <Testemonial />
       <Contact />
       <Footer />
-    </FeatureFlagProvider>
+    </>
   );
 }
 
