@@ -49,21 +49,16 @@ export const Contact = () => {
     },
   });
 
-  // Use a simpler approach with the explicit onload callback
   useEffect(() => {
-    // Define the callback function
     window.onReCaptchaLoad = () => {
-      console.log("reCAPTCHA script loaded");
       setRecaptchaLoaded(true);
     };
 
-    // Create script element
     const script = document.createElement("script");
     script.src =
       "https://www.google.com/recaptcha/api.js?onload=onReCaptchaLoad&render=explicit";
     script.async = true;
 
-    // Add error handling for the script
     script.onerror = (e) => {
       console.error("Error loading reCAPTCHA script:", e);
       setRecaptchaError(
@@ -71,11 +66,9 @@ export const Contact = () => {
       );
     };
 
-    // Append to document
     document.head.appendChild(script);
 
     return () => {
-      // Clean up
       if (script.parentNode) {
         script.parentNode.removeChild(script);
       }
@@ -83,13 +76,9 @@ export const Contact = () => {
     };
   }, []);
 
-  // This effect runs when the script is loaded
   useEffect(() => {
     if (recaptchaLoaded && recaptchaRef.current) {
       try {
-        console.log("Attempting to render reCAPTCHA");
-
-        // Verify grecaptcha is available
         if (!window.grecaptcha || !window.grecaptcha.render) {
           console.error("grecaptcha not available");
           setRecaptchaError(
@@ -98,22 +87,13 @@ export const Contact = () => {
           return;
         }
 
-        // Use a try-catch to capture any render errors
         try {
-          // For debugging
-          console.log(
-            "Site key being used:",
-            import.meta.env.VITE_RECAPTCHA_SITE_KEY ||
-              "6LdSZA0rAAAAAGqi6IQto1iPNUkgHPOqKn9urHMw"
-          );
-
           window.grecaptcha.render(recaptchaRef.current, {
             // Try using the environment variable first, fall back to the hardcoded key
             sitekey:
               import.meta.env.VITE_RECAPTCHA_SITE_KEY ||
               "6LdSZA0rAAAAAGqi6IQto1iPNUkgHPOqKn9urHMw",
             callback: (token: string) => {
-              console.log("reCAPTCHA callback received");
               setRecaptchaToken(token);
             },
             "expired-callback": () => setRecaptchaToken(""),
@@ -141,10 +121,7 @@ export const Contact = () => {
   }, [recaptchaLoaded]);
 
   const handleForm = async (data: Inputs) => {
-    console.log({ data });
-
     const captchaResponse = window.grecaptcha.getResponse();
-    console.log("reCAPTCHA response length:", captchaResponse?.length || 0);
 
     if (!captchaResponse) {
       toast("Please complete the reCAPTCHA verification.", {
@@ -167,16 +144,13 @@ export const Contact = () => {
         "g-recaptcha-response": captchaResponse,
       };
 
-      console.log("Submitting form with reCAPTCHA response");
-
       const res = await fetch("https://api.staticforms.xyz/submit", {
         method: "POST",
         body: JSON.stringify(body),
         headers: { "Content-Type": "application/json" },
       });
 
-      const json = await res.json();
-      console.log("Form submission response:", json);
+      await res.json();
 
       toast("Thanks for your message👍. We will get back to you ASAP.", {
         type: "success",
