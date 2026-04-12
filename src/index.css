@@ -94,6 +94,8 @@ button:focus-visible {
 .contact_form-container .holder {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
+  text-align: left;
   margin-bottom: 1em;
 }
 
@@ -103,6 +105,17 @@ button:focus-visible {
 
 .contact_form-container .holder small.error {
   color: red;
+}
+
+.footer-holder {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-holder .error {
+  color: red;
+  max-width: 300px;
+  text-align: right;
 }
 
 .contact_form-container input,
@@ -119,6 +132,31 @@ button:focus-visible {
 .contact_form-container input:focus,
 .contact_form-container textarea:focus {
   border: 3px solid var(--main-color);
+}
+
+.contact_form-container .PhoneInput {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid var(--main-color);
+  min-height: 50px;
+  width: 100%;
+  padding-left: 10px;
+}
+
+.contact_form-container .PhoneInput:focus-within {
+  border: 3px solid var(--main-color);
+}
+
+.contact_form-container .PhoneInputInput {
+  border: none !important;
+  min-height: unset !important;
+  padding-left: 6px;
+  flex: 1;
+}
+
+.contact_form-container .PhoneInputInput:focus {
+  border: none !important;
 }
 
 .contact_form-container button.submit {
