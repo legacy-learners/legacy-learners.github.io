@@ -27,7 +27,7 @@ export const Hero = () => {
                 </p>
                 <p>
                   If you are interested in enrolling your child, please get in
-                  touch. We accept children from 18 months to 4 years.
+                  touch. We accept children from 15 months to 4 years.
                   <br />
                   {/* We are <strong>accepting applications</strong> for our waiting
                   list and will start interviewing families in July for spots
