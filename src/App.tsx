@@ -8,7 +8,7 @@ import { Testemonial } from "./components/Testemonial";
 import { Why } from "./components/Why";
 import ReactGA from "react-ga4";
 
-ReactGA.initialize(import.meta.env.VITE_GA_MEASUREMENT_ID);
+ReactGA.initialize(import.meta.env.VITE_GA_MEASUREMENT_ID ?? "");
 function App() {
   return (
     <>

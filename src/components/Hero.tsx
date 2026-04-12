@@ -28,17 +28,17 @@ export const Hero = () => {
                 <p>
                   If you are interested in enrolling your child, please get in
                   touch. We accept children from 18 months to 4 years.
-                  <br /> <br />
-                  We are <strong>accepting applications</strong> for our waiting
+                  <br />
+                  {/* We are <strong>accepting applications</strong> for our waiting
                   list and will start interviewing families in July for spots
-                  available on August 2025.
+                  available on August 2025. */}
                 </p>
-                {/* <p>
-                  We are currently fully booked and no longer taking
-                  applications. We welcome parents to enquire for future
-                  openings though, should your needs are for the next coming
-                  months.
-                </p> */}
+                <p>
+                  We are currently fully booked and are not accepting new
+                  applications at this time. However, you are welcome to inquire
+                  about future openings if your childcare needs are for the
+                  coming months.
+                </p>
                 <div className="hero_btn-continer">
                   <GetInTouch />
                 </div>

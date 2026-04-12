@@ -13,11 +13,11 @@ export const Testemonial = () => (
           <div className="client_detail-box">
             <h5>Ms. Adriana Naomi</h5>
             <p>
-              Meet Ms. Adriana, aka Drica, a dedicated Early Childhood
-              Professional ECE Level 3, who holds a graduation, master's, and
-              PhD degree in Education. With over a decade of unwavering
-              commitment to the field, Adriana has been instrumental in shaping
-              the educational experiences of countless young learners.
+              Meet Ms. Adriana, a dedicated Early Childhood Professional ECE
+              Level 3, who holds a graduation, master's, and PhD degree in
+              Education. With over a decade of unwavering commitment to the
+              field, Adriana has been instrumental in shaping the educational
+              experiences of countless young learners.
             </p>
             <p>
               Through years of hands-on work, Ms. Adriana has honed a deep
